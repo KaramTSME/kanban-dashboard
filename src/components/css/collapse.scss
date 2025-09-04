@@ -1,0 +1,65 @@
+.collapsible {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  outline: hidden;
+  border-radius: calc(var(--radius) - 2px);
+  padding: calc(var(--spacing) * 2);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+
+  & .collapsible-title {
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    font-weight: 600;
+  }
+
+  & .collapsible-chevron {
+    border-radius: calc(var(--radius) - 4px);
+    padding: calc(var(--spacing));
+    cursor: pointer;
+    & svg {
+      fill: var(--primary);
+      transition: transform 0.2s ease-in-out;
+    }
+    &:hover {
+      background-color: var(--secondary);
+    }
+  }
+
+  &[open] .collapsible-chevron svg {
+    transform: rotate(180deg);
+  }
+}
+
+.collapse-list {
+  margin-left: calc(var(--spacing) * 4);
+  border-left-width: 1px;
+
+  & .collapse-list-item {
+    margin-top: calc(var(--spacing) * 1.5);
+    margin-left: calc(var(--spacing) * 2);
+    margin-right: calc(var(--spacing) * 4);
+    &:first-child {
+      margin-top: 0;
+    }
+
+    & .collapse-list-item-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      overflow: hidden;
+      outline: hidden;
+      border-radius: calc(var(--radius) - 2px);
+      padding: calc(var(--spacing)) calc(var(--spacing) * 1.5);
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
+      &:hover {
+        background-color: var(--secondary);
+      }
+    }
+  }
+}

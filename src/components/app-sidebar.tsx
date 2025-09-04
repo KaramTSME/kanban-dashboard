@@ -23,7 +23,13 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <CollapsibleList items={[{ title: "Dashboard 1", url: "#" }]} />
+      <CollapsibleList
+        title="My Dashboards"
+        items={[
+          { title: "Dashboard 1", url: "#" },
+          { title: "Dashboard 2", url: "#" },
+        ]}
+      />
     </Sidebar>
   )
 }
