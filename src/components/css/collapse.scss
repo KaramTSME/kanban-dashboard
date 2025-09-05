@@ -5,6 +5,7 @@
   width: 100%;
   overflow: hidden;
   outline: hidden;
+  cursor: pointer;
   border-radius: calc(var(--radius) - 2px);
   padding: calc(var(--spacing) * 2);
   font-size: var(--text-sm);
@@ -16,6 +17,10 @@
     font-weight: 600;
   }
 
+  &:hover {
+    background-color: var(--secondary);
+  }
+
   & .collapsible-chevron {
     border-radius: calc(var(--radius) - 4px);
     padding: calc(var(--spacing));
@@ -25,7 +30,7 @@
       transition: transform 0.2s ease-in-out;
     }
     &:hover {
-      background-color: var(--secondary);
+      background-color: var(--popover);
     }
   }
 

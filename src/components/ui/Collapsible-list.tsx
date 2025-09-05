@@ -3,14 +3,21 @@ import { useState } from "react"
 
 const CollapsibleList = ({ title, items = [] }: { title?: string; items: { title: string; url: string }[] }) => {
   const [isCollapsed, seIsCollapsed] = useState<boolean | undefined>()
+
+  const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    seIsCollapsed(!isCollapsed)
+  }
+
   return (
     <>
-      <div className="collapsible" {...{ open: !isCollapsed }}>
+      <a href="#" className="collapsible" {...{ open: !isCollapsed }}>
         <h6 className="collapsible-title">{title}</h6>
-        <button className="collapsible-chevron" onClick={() => seIsCollapsed(!isCollapsed)}>
+        <button className="collapsible-chevron" onClick={toggle}>
           <Chevron />
         </button>
-      </div>
+      </a>
       {!isCollapsed && (
         <ul className="collapse-list">
           {items.map((item, index) => {
