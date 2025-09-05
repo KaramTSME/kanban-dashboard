@@ -1,5 +1,5 @@
-import Chevron from "@/assets/svg/chevron"
 import { useState } from "react"
+import SvgIcon from "./svg-icon"
 
 const CollapsibleList = ({ title, items = [] }: { title?: string; items: { title: string; url: string }[] }) => {
   const [isCollapsed, seIsCollapsed] = useState<boolean | undefined>()
@@ -15,7 +15,7 @@ const CollapsibleList = ({ title, items = [] }: { title?: string; items: { title
       <a href="#" className="collapsible" {...{ open: !isCollapsed }}>
         <h6 className="collapsible-title">{title}</h6>
         <button className="collapsible-chevron" onClick={toggle}>
-          <Chevron />
+          <SvgIcon icon="chevron" />
         </button>
       </a>
       {!isCollapsed && (

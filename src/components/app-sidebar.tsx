@@ -1,7 +1,7 @@
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import type { ComponentProps } from "react"
-import CollapsibleList from "./ui/Collapsible-list"
+import CollapsibleList from "./ui/collapsible-list"
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   return (
