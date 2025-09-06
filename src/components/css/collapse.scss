@@ -21,7 +21,7 @@
     background-color: var(--secondary);
   }
 
-  & .collapsible-chevron {
+  & .collapsible-action {
     border-radius: calc(var(--radius) - 4px);
     padding: calc(var(--spacing));
     cursor: pointer;
@@ -34,7 +34,7 @@
     }
   }
 
-  &[open] .collapsible-chevron svg {
+  &[open] .collapsible-action svg {
     transform: rotate(180deg);
   }
 }

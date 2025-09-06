@@ -1,7 +1,15 @@
 import { useState } from "react"
 import SvgIcon from "./svg-icon"
 
-const CollapsibleList = ({ title, items = [] }: { title?: string; items: { title: string; url: string }[] }) => {
+const CollapsibleList = ({
+  title,
+  items = [],
+  children,
+}: {
+  title?: string
+  items: { title: string; url: string }[]
+  children?: React.ReactNode
+}) => {
   const [isCollapsed, seIsCollapsed] = useState<boolean | undefined>()
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -14,9 +22,12 @@ const CollapsibleList = ({ title, items = [] }: { title?: string; items: { title
     <>
       <a href="#" className="collapsible" {...{ open: !isCollapsed }}>
         <h6 className="collapsible-title">{title}</h6>
-        <button className="collapsible-chevron" onClick={toggle}>
-          <SvgIcon icon="chevron" />
-        </button>
+        <div>
+          {children}
+          <button className="collapsible-action" onClick={toggle}>
+            <SvgIcon icon="chevron" />
+          </button>
+        </div>
       </a>
       {!isCollapsed && (
         <ul className="collapse-list">

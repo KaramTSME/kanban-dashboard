@@ -1,9 +1,19 @@
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
-import type { ComponentProps } from "react"
+import { useState, type ComponentProps } from "react"
 import CollapsibleList from "./ui/collapsible-list"
+import { Input } from "./ui/input"
+import SvgIcon from "./ui/svg-icon"
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
+  const [newBoardFormVisible, setNewBoardFormVisible] = useState(false)
+
+  const toggleNewBoardForm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setNewBoardFormVisible(true)
+  }
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -29,7 +39,14 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
           { title: "Dashboard 1", url: "#" },
           { title: "Dashboard 2", url: "#" },
         ]}
-      />
+      >
+        {!newBoardFormVisible && (
+          <button className="collapsible-action mr-1" onClick={toggleNewBoardForm}>
+            <SvgIcon icon="plus" />
+          </button>
+        )}
+      </CollapsibleList>
+      {newBoardFormVisible && <Input className="mt-2" />}
     </Sidebar>
   )
 }
