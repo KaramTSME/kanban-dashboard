@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "./components/css/collapse.scss";
+@import "./css/collapse.scss";
+@import "./css/tooltip.scss";
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

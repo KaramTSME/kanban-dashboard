@@ -15,7 +15,7 @@ const AddNewButton = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.Mo
   }
 
   return (
-    <button className="collapsible-action mr-1" onClick={onAdd}>
+    <button className="collapsible-action mr-1 tip" {...{ "aria-label": "Create" }} onClick={onAdd}>
       <SvgIcon icon="plus" />
     </button>
   )
