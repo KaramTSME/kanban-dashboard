@@ -40,7 +40,7 @@ const CollapsibleList = ({
         <h6 className="collapsible-title">{title}</h6>
         <div>
           {children}
-          <button className="collapsible-action" {...{ action: "toggle" }} onClick={toggleCollapse}>
+          <button className="collapsible-action" {...{ "list-action": "toggle" }} onClick={toggleCollapse}>
             <SvgIcon icon="chevron" />
           </button>
         </div>
