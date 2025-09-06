@@ -1,13 +1,28 @@
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
-import { useState, type ComponentProps } from "react"
-import CollapsibleList from "./ui/collapsible-list"
+import { CollapsibleList, CollapsibleListContext, CollapsibleListProvider } from "./ui/collapsible-list"
 import { Input } from "./ui/input"
-import SvgIcon from "./ui/svg-icon"
+import { SvgIcon } from "./ui/svg-icon"
+import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
+import React from "react"
 
-export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
-  const [newBoardFormVisible, setNewBoardFormVisible] = useState(false)
+const AddNewButton = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
+  const { toggle } = React.useContext(CollapsibleListContext) as TCollapsibleListContext
 
+  const onAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
+    toggleNewBoardForm(e)
+    toggle(true)
+  }
+
+  return (
+    <button className="collapsible-action mr-1" onClick={onAdd}>
+      <SvgIcon icon="plus" />
+    </button>
+  )
+}
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [newBoardFormVisible, setNewBoardFormVisible] = React.useState(false)
   const toggleNewBoardForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     e.stopPropagation()
@@ -33,19 +48,17 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <CollapsibleList
-        title="My Dashboards"
-        items={[
-          { title: "Dashboard 1", url: "#" },
-          { title: "Dashboard 2", url: "#" },
-        ]}
-      >
-        {!newBoardFormVisible && (
-          <button className="collapsible-action mr-1" onClick={toggleNewBoardForm}>
-            <SvgIcon icon="plus" />
-          </button>
-        )}
-      </CollapsibleList>
+      <CollapsibleListProvider>
+        <CollapsibleList
+          title="My Dashboards"
+          items={[
+            { title: "Dashboard 1", url: "#" },
+            { title: "Dashboard 2", url: "#" },
+          ]}
+        >
+          {!newBoardFormVisible && <AddNewButton toggleNewBoardForm={toggleNewBoardForm} />}
+        </CollapsibleList>
+      </CollapsibleListProvider>
       {newBoardFormVisible && <Input className="mt-2" />}
     </Sidebar>
   )

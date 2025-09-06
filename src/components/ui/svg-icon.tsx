@@ -17,4 +17,4 @@ const SvgIcon = ({ icon, ...rest }: { icon: string }) => {
   )
 }
 
-export default SvgIcon
+export { SvgIcon }

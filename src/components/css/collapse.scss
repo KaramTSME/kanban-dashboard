@@ -34,7 +34,7 @@
     }
   }
 
-  &[open] .collapsible-action svg {
+  &[open] .collapsible-action[action="toggle"] svg {
     transform: rotate(180deg);
   }
 }

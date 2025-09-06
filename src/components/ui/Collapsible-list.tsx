@@ -1,5 +1,19 @@
-import { useState } from "react"
-import SvgIcon from "./svg-icon"
+import { createContext, useCallback, useContext, useState, type MouseEvent, type ReactNode } from "react"
+import { SvgIcon } from "./svg-icon"
+import type { TNullable } from "@/core/types/global"
+import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
+
+const CollapsibleListContext = createContext<TNullable<TCollapsibleListContext>>(null)
+
+const CollapsibleListProvider = ({ ...props }) => {
+  const [isCollapsed, seIsCollapsed] = useState<boolean>(false)
+
+  const toggle = useCallback((state?: boolean) => seIsCollapsed(state === undefined ? !isCollapsed : state), [isCollapsed])
+
+  const context = { isCollapsed, toggle }
+
+  return <CollapsibleListContext.Provider value={context} {...props} />
+}
 
 const CollapsibleList = ({
   title,
@@ -8,15 +22,17 @@ const CollapsibleList = ({
 }: {
   title?: string
   items: { title: string; url: string }[]
-  children?: React.ReactNode
+  children?: ReactNode
 }) => {
-  const [isCollapsed, seIsCollapsed] = useState<boolean | undefined>()
+  const { isCollapsed, toggle } = useContext(CollapsibleListContext) as TCollapsibleListContext
 
-  const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleCollapse = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    seIsCollapsed(!isCollapsed)
+    toggle()
   }
+
+  // Children.map(children, (child) => (isValidElement(child) ? cloneElement(child, { onClick: () => toggle }) : child))
 
   return (
     <>
@@ -24,7 +40,7 @@ const CollapsibleList = ({
         <h6 className="collapsible-title">{title}</h6>
         <div>
           {children}
-          <button className="collapsible-action" onClick={toggle}>
+          <button className="collapsible-action" {...{ action: "toggle" }} onClick={toggleCollapse}>
             <SvgIcon icon="chevron" />
           </button>
         </div>
@@ -45,4 +61,4 @@ const CollapsibleList = ({
     </>
   )
 }
-export default CollapsibleList
+export { CollapsibleListContext, CollapsibleList, CollapsibleListProvider }
