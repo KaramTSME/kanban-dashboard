@@ -17,19 +17,15 @@
   }
 
   &:hover {
-    background-color: var(--secondary);
+    background-color: var(--muted);
   }
 
   & .collapsible-action {
     border-radius: calc(var(--radius) - 4px);
     padding: calc(var(--spacing));
     cursor: pointer;
-    & svg {
-      fill: var(--primary);
+    &[list-action="toggle"] svg {
       transition: transform 0.2s ease-in-out;
-    }
-    &:hover {
-      background-color: var(--popover);
     }
   }
 

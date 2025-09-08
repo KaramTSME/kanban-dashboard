@@ -1,7 +1,9 @@
 import { createContext, useCallback, useContext, useState, type MouseEvent, type ReactNode } from "react"
 import { SvgIcon } from "./svg-icon"
+import { Button } from "./button"
 import type { TNullable } from "@/core/types/global"
 import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
+import { BackgroundEnum } from "@/core/enums/global"
 
 const CollapsibleListContext = createContext<TNullable<TCollapsibleListContext>>(null)
 
@@ -40,9 +42,14 @@ const CollapsibleList = ({
         <h6 className="collapsible-title">{title}</h6>
         <div>
           {children}
-          <button className="collapsible-action" {...{ "list-action": "toggle" }} onClick={toggleCollapse}>
+          <Button
+            background={BackgroundEnum.transparent}
+            className="collapsible-action"
+            {...{ "list-action": "toggle" }}
+            onClick={toggleCollapse}
+          >
             <SvgIcon icon="chevron" />
-          </button>
+          </Button>
         </div>
       </a>
       {!isCollapsed && (
