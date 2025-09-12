@@ -6,9 +6,9 @@ const Button = ({ children, ...props }: React.ButtonHTMLAttributes<HTMLButtonEle
   return (
     <button
       {...props}
-      className={`btn btn-${buttonProps.background} ${buttonProps.transparent ? "btn-transparent" : ""} text-${buttonProps.size}  
-      ${props.className}
-      `}
+      className={`btn btn-${buttonProps.background} ${buttonProps.transparent ? "btn-transparent" : ""} text-${buttonProps.size}${
+        props?.className ? ` ${props.className}` : ""
+      }`}
     >
       {children}
     </button>
