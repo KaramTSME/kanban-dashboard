@@ -7,8 +7,6 @@
   cursor: pointer;
   border-radius: calc(var(--radius) - 2px);
   padding: calc(var(--spacing) * 2);
-  font-size: var(--text-sm);
-  line-height: var(--tw-leading, var(--text-sm--line-height));
 
   & .collapsible-title {
     font-size: var(--text-sm);
