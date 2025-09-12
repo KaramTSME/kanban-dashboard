@@ -20,16 +20,11 @@
     background-color: var(--muted);
   }
 
-  & .collapsible-action {
-    border-radius: calc(var(--radius) - 4px);
-    padding: calc(var(--spacing));
-    cursor: pointer;
-    &[list-action="toggle"] svg {
-      transition: transform 0.2s ease-in-out;
-    }
+  & [list-action="toggle"] svg {
+    transition: transform 0.2s ease-in-out;
   }
 
-  &[open] .collapsible-action[list-action="toggle"] svg {
+  &[open] [list-action="toggle"] svg {
     transform: rotate(180deg);
   }
 }
@@ -58,7 +53,7 @@
       font-size: var(--text-sm);
       line-height: var(--tw-leading, var(--text-sm--line-height));
       &:hover {
-        background-color: var(--secondary);
+        background-color: var(--muted);
       }
     }
   }

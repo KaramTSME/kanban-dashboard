@@ -1,8 +1,10 @@
 import { BackgroundEnum, SizeEnum } from "../enums/global"
+import type { TOptional } from "../types/global"
 
 interface IButton {
-  size?: SizeEnum
-  background?: BackgroundEnum
+  size?: TOptional<SizeEnum>
+  background?: TOptional<BackgroundEnum>
+  transparent?: TOptional<boolean>
 }
 
 export type { IButton }

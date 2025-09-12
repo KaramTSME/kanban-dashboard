@@ -17,7 +17,6 @@ enum BackgroundEnum {
   success = "success",
   warning = "warning",
   danger = "danger",
-  transparent = "transparent",
 }
 
 export { SizeEnum, BackgroundEnum }

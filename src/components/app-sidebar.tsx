@@ -1,10 +1,12 @@
+import React from "react"
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { CollapsibleList, CollapsibleListContext, CollapsibleListProvider } from "./ui/collapsible-list"
 import { Input } from "./ui/input"
 import { SvgIcon } from "./ui/svg-icon"
+import { Button } from "./ui/button"
+import { BackgroundEnum } from "@/core/enums/global"
 import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
-import React from "react"
 
 const AddNewButton = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
   const { toggle } = React.useContext(CollapsibleListContext) as TCollapsibleListContext
@@ -15,9 +17,9 @@ const AddNewButton = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.Mo
   }
 
   return (
-    <button className="collapsible-action mr-1 tip" {...{ "aria-label": "Create" }} onClick={onAdd}>
+    <Button background={BackgroundEnum.muted} className="tip mr-1" transparent {...{ "aria-label": "Create" }} onClick={onAdd}>
       <SvgIcon icon="plus" />
-    </button>
+    </Button>
   )
 }
 

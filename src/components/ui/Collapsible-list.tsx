@@ -42,12 +42,7 @@ const CollapsibleList = ({
         <h6 className="collapsible-title">{title}</h6>
         <div>
           {children}
-          <Button
-            background={BackgroundEnum.transparent}
-            className="collapsible-action"
-            {...{ "list-action": "toggle" }}
-            onClick={toggleCollapse}
-          >
+          <Button background={BackgroundEnum.muted} transparent {...{ "list-action": "toggle" }} onClick={toggleCollapse}>
             <SvgIcon icon="chevron" />
           </Button>
         </div>

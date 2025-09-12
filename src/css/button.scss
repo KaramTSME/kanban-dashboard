@@ -1,0 +1,65 @@
+.btn {
+  border-radius: calc(var(--radius) - 4px);
+  padding: calc(var(--spacing));
+  cursor: pointer;
+
+  &.btn-primary {
+    background-color: var(--primary);
+    color: var(--light);
+    fill: var(--light);
+  }
+  &.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--light);
+    fill: var(--light);
+    &:hover {
+      background-color: var(--muted);
+    }
+  }
+  &.btn-muted {
+    background-color: var(--muted);
+    color: var(--light);
+    fill: var(--light);
+    &:hover {
+      background-color: var(--secondary);
+    }
+  }
+  &.btn-gray {
+    background-color: var(--gray);
+    color: var(--light);
+    fill: var(--light);
+  }
+  &.btn-light-gray {
+    background-color: var(--light-gray);
+    color: var(--light);
+    fill: var(--light);
+  }
+  &.btn-dark {
+    background-color: var(--dark);
+    color: var(--light);
+    fill: var(--light);
+  }
+  &.btn-light {
+    background-color: var(--light);
+    color: var(--dark);
+    fill: var(--dark);
+  }
+  &.btn-success {
+    background-color: var(--success);
+    color: var(--light);
+    fill: var(--light);
+  }
+  &.btn-warning {
+    background-color: var(--warning);
+    color: var(--light);
+    fill: var(--light);
+  }
+  &.btn-danger {
+    background-color: var(--danger);
+    color: var(--light);
+    fill: var(--light);
+  }
+  &.btn-transparent {
+    background-color: transparent;
+  }
+}
