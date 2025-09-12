@@ -1,5 +1,5 @@
-import type { TSvg } from "@/core/types/t-svg"
 import { useState } from "react"
+import type { TSvg } from "@/core/types/t-svg"
 
 const SvgIcon = ({ icon, ...rest }: { icon: string }) => {
   const [svg, setSvg] = useState<TSvg>()
@@ -7,7 +7,7 @@ const SvgIcon = ({ icon, ...rest }: { icon: string }) => {
   return (
     <>
       {svg && (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox={svg.viewBox} width={svg.width} height={svg.height} {...rest}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox={svg.viewBox} width="1em" height="1em" {...rest}>
           {svg.path.map((p, i) => {
             return <path key={i} d={p} />
           })}

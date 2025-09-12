@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useState } from "react"
 import { SvgIcon } from "./svg-icon"
 import { Button } from "./button"
-import { BackgroundEnum } from "@/core/enums/global"
+import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
 import type { TNullable } from "@/core/types/global"
 import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
 
@@ -42,7 +42,13 @@ const CollapsibleList = ({
         <h6 className="collapsible-title">{title}</h6>
         <div>
           {children}
-          <Button background={BackgroundEnum.muted} transparent {...{ "list-action": "toggle" }} onClick={toggleCollapse}>
+          <Button
+            background={BackgroundEnum.muted}
+            size={SizeEnum.lg}
+            transparent
+            {...{ "list-action": "toggle" }}
+            onClick={toggleCollapse}
+          >
             <SvgIcon icon="chevron" />
           </Button>
         </div>

@@ -5,7 +5,7 @@ import { CollapsibleList, CollapsibleListContext, CollapsibleListProvider } from
 import { Input } from "./ui/input"
 import { SvgIcon } from "./ui/svg-icon"
 import { Button } from "./ui/button"
-import { BackgroundEnum } from "@/core/enums/global"
+import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
 import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
 
 const AddNewButton = ({
@@ -27,6 +27,7 @@ const AddNewButton = ({
       background={BackgroundEnum.muted}
       className="tip mr-1"
       disabled={disabled}
+      size={SizeEnum.lg}
       transparent
       {...{ "aria-label": "Create" }}
       onClick={onAdd}
