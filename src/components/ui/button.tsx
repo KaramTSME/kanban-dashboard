@@ -1,16 +1,15 @@
-import { Button as _Button } from "@/core/defs/button"
+import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
 import type { IButton } from "@/core/interfaces/i-button"
 
-const Button = ({ children, transparent, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & IButton) => {
-  const buttonProps = new _Button({ ...props }) as IButton
+const Button = ({ size = SizeEnum.md, background = BackgroundEnum.primary, transparent = false, ...props }: IButton) => {
   return (
     <button
       {...props}
-      className={`btn btn-${buttonProps.background} ${transparent ? "btn-transparent" : ""} text-${buttonProps.size}${
+      className={`btn btn-${background} ${transparent ? "btn-transparent" : ""} text-${size}${
         props?.className ? ` ${props.className}` : ""
       }`}
     >
-      {children}
+      {props.children}
     </button>
   )
 }
