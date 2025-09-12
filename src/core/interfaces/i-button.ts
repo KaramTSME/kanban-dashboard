@@ -5,6 +5,7 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: TOptional<SizeEnum>
   background?: TOptional<BackgroundEnum>
   transparent?: TOptional<boolean>
+  disabled?: TOptional<boolean>
 }
 
 export type { IButton }

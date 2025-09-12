@@ -8,7 +8,13 @@ import { Button } from "./ui/button"
 import { BackgroundEnum } from "@/core/enums/global"
 import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
 
-const AddNewButton = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
+const AddNewButton = ({
+  disabled,
+  toggleNewBoardForm,
+}: {
+  disabled: boolean
+  toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void
+}) => {
   const { toggle } = React.useContext(CollapsibleListContext) as TCollapsibleListContext
 
   const onAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,7 +23,14 @@ const AddNewButton = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.Mo
   }
 
   return (
-    <Button background={BackgroundEnum.muted} className="tip mr-1" transparent {...{ "aria-label": "Create" }} onClick={onAdd}>
+    <Button
+      background={BackgroundEnum.muted}
+      className="tip mr-1"
+      disabled={disabled}
+      transparent
+      {...{ "aria-label": "Create" }}
+      onClick={onAdd}
+    >
       <SvgIcon icon="plus" />
     </Button>
   )
@@ -58,7 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             { title: "Dashboard 2", url: "#" },
           ]}
         >
-          {!newBoardFormVisible && <AddNewButton toggleNewBoardForm={toggleNewBoardForm} />}
+          <AddNewButton disabled={newBoardFormVisible} toggleNewBoardForm={toggleNewBoardForm} />
         </CollapsibleList>
       </CollapsibleListProvider>
       {newBoardFormVisible && <Input className="mt-2" />}
