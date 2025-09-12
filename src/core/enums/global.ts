@@ -1,9 +1,12 @@
 enum SizeEnum {
-  xs = "xs",
-  sm = "sm",
-  md = "md",
-  lg = "lg",
-  xl = "xl",
+  xs = "text-xs",
+  sm = "text-sm",
+  md = "text-md",
+  lg = "text-lg",
+  xl = "text-xl",
+  xl2 = "text-2xl",
+  xl3 = "text-3xl",
+  xl4 = "text-4xl",
 }
 
 enum BackgroundEnum {

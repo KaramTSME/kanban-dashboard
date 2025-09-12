@@ -1,9 +1,9 @@
-import { createContext, useCallback, useContext, useState, type MouseEvent, type ReactNode } from "react"
+import { createContext, useCallback, useContext, useState } from "react"
 import { SvgIcon } from "./svg-icon"
 import { Button } from "./button"
+import { BackgroundEnum } from "@/core/enums/global"
 import type { TNullable } from "@/core/types/global"
 import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
-import { BackgroundEnum } from "@/core/enums/global"
 
 const CollapsibleListContext = createContext<TNullable<TCollapsibleListContext>>(null)
 
@@ -24,11 +24,11 @@ const CollapsibleList = ({
 }: {
   title?: string
   items: { title: string; url: string }[]
-  children?: ReactNode
+  children?: React.ReactNode
 }) => {
   const { isCollapsed, toggle } = useContext(CollapsibleListContext) as TCollapsibleListContext
 
-  const toggleCollapse = (e: MouseEvent<HTMLButtonElement>) => {
+  const toggleCollapse = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     e.stopPropagation()
     toggle()
