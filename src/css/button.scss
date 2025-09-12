@@ -1,4 +1,7 @@
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: calc(var(--radius) - 4px);
   padding: calc(var(--spacing));
   cursor: pointer;
