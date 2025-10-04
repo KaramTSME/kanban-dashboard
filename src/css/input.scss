@@ -1,0 +1,18 @@
+input {
+  width: 100%;
+  background-color: var(--muted);
+  border-radius: calc(var(--radius) - 4px);
+  padding: calc(var(--spacing));
+  border: 1px solid var(--gray);
+  outline: none;
+
+  &:focus,
+  &:focus-visible {
+    outline: 1px solid var(--gray);
+  }
+
+  &::placeholder {
+    color: var(--gray);
+    opacity: 0.85;
+  }
+}

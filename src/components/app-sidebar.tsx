@@ -2,10 +2,10 @@ import React from "react"
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { CollapsibleList, CollapsibleListProvider } from "./ui/collapsible-list"
-import { Input } from "./ui/input"
 import { SvgIcon } from "./ui/svg-icon"
 import { Button } from "./ui/button"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
+import { Input } from "./ui/input"
 
 const AddNewButton = ({
   disabled,
@@ -35,8 +35,8 @@ const AddNewButton = ({
 
 const InputForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
   return (
-    <div className="m-3 mt-1">
-      <Input className="mb-2" />
+    <div className="ml-3 mb-3">
+      <Input className="mb-2" label="Dashboard name" placeholder="Enter dashboard name" size={SizeEnum.xs} required />
       <div className="flex justify-end gap-2">
         <Button background={BackgroundEnum.secondary} size={SizeEnum.xs} onClick={toggleNewBoardForm}>
           Cancel

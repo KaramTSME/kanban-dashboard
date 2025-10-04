@@ -4,6 +4,7 @@
 @import "./css/collapse.scss";
 @import "./css/tooltip.scss";
 @import "./css/button.scss";
+@import "./css/input.scss";
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
