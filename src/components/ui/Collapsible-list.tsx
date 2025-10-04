@@ -3,7 +3,8 @@ import { SvgIcon } from "./svg-icon"
 import { Button } from "./button"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
 import type { TNullable } from "@/core/types/global"
-import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
+import type { TCollapsibleListContext } from "@/components/ui/meta/t-collapsible-list-context"
+import type { TCollapsibleListProps } from "./meta/collapsible-list"
 
 const CollapsibleListContext = createContext<TNullable<TCollapsibleListContext>>(null)
 
@@ -17,15 +18,7 @@ const CollapsibleListProvider = ({ ...props }) => {
   return <CollapsibleListContext.Provider value={context} {...props} />
 }
 
-const CollapsibleList = ({
-  title,
-  items = [],
-  children,
-}: {
-  title?: string
-  items: { title: string; url: string }[]
-  children?: React.ReactNode
-}) => {
+const CollapsibleList = ({ title, items = [], children, customListItem }: TCollapsibleListProps) => {
   const { isCollapsed, toggle } = useContext(CollapsibleListContext) as TCollapsibleListContext
 
   const toggleCollapse = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,6 +48,7 @@ const CollapsibleList = ({
       </a>
       {!isCollapsed && (
         <ul className="collapse-list">
+          {customListItem}
           {items.map((item, index) => {
             return (
               <li className="collapse-list-item" key={index}>

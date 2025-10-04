@@ -1,25 +1,21 @@
 import React from "react"
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
-import { CollapsibleList, CollapsibleListContext, CollapsibleListProvider } from "./ui/collapsible-list"
+import { CollapsibleList, CollapsibleListProvider } from "./ui/collapsible-list"
 import { Input } from "./ui/input"
 import { SvgIcon } from "./ui/svg-icon"
 import { Button } from "./ui/button"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
-import type { TCollapsibleListContext } from "@/core/types/t-collapsible-list-context"
 
 const AddNewButton = ({
   disabled,
   toggleNewBoardForm,
 }: {
   disabled: boolean
-  toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void
+  toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>, c: boolean) => void
 }) => {
-  const { toggle } = React.useContext(CollapsibleListContext) as TCollapsibleListContext
-
   const onAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
-    toggleNewBoardForm(e)
-    toggle(true)
+    toggleNewBoardForm(e, true)
   }
 
   return (
@@ -37,12 +33,28 @@ const AddNewButton = ({
   )
 }
 
+const InputForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
+  return (
+    <div className="m-3 mt-1">
+      <Input className="mb-2" />
+      <div className="flex justify-end gap-2">
+        <Button background={BackgroundEnum.secondary} size={SizeEnum.xs} onClick={toggleNewBoardForm}>
+          Cancel
+        </Button>
+        <Button background={BackgroundEnum.primary} size={SizeEnum.xs}>
+          Create
+        </Button>
+      </div>
+    </div>
+  )
+}
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [newBoardFormVisible, setNewBoardFormVisible] = React.useState(false)
-  const toggleNewBoardForm = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleNewBoardForm = (e: React.MouseEvent<HTMLButtonElement>, c = false) => {
     e.preventDefault()
     e.stopPropagation()
-    setNewBoardFormVisible(true)
+    setNewBoardFormVisible(c)
   }
 
   return (
@@ -71,11 +83,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             { title: "Dashboard 1", url: "#" },
             { title: "Dashboard 2", url: "#" },
           ]}
+          customListItem={newBoardFormVisible && <InputForm toggleNewBoardForm={toggleNewBoardForm} />}
         >
           <AddNewButton disabled={newBoardFormVisible} toggleNewBoardForm={toggleNewBoardForm} />
         </CollapsibleList>
       </CollapsibleListProvider>
-      {newBoardFormVisible && <Input className="mt-2" />}
     </Sidebar>
   )
 }

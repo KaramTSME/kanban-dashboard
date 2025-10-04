@@ -1,8 +1,8 @@
 import { ats } from "@/core/utils/ats"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
-import type { IButton } from "@/core/interfaces/i-button"
+import type { TButton } from "./meta/button"
 
-const Button = ({ size = SizeEnum.md, background = BackgroundEnum.primary, disabled = false, transparent = false, ...props }: IButton) => {
+const Button = ({ size = SizeEnum.md, background = BackgroundEnum.primary, disabled = false, transparent = false, ...props }: TButton) => {
   const className = ats([
     "btn",
     `btn-${background}`,
