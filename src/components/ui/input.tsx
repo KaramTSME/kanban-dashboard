@@ -1,4 +1,4 @@
-import { ats } from "@/core/utils/ats"
+import { ats } from "@/core"
 import { SizeEnum } from "@/core/enums/global"
 import type { TInput } from "./meta/input"
 

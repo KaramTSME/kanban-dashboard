@@ -1,4 +1,4 @@
-import { ats } from "@/core/utils/ats"
+import { ats } from "@/core"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
 import type { TButton } from "./meta/button"
 
