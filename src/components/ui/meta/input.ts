@@ -1,6 +1,6 @@
 import { SizeEnum } from "@/core/enums/global"
 
-type TInput = React.InputHTMLAttributes<HTMLInputElement> & {
+type TInput = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
   type?: "text" | "password" | "email" | "number" | "search" | "tel" | "url"
   label?: string
   noLabel?: boolean
