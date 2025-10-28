@@ -1,5 +1,5 @@
 import { useState } from "react"
-import type { TSvg } from "@/components/ui/meta/t-svg"
+import type { TSvg } from "@/components/ui/meta/svg"
 
 const SvgIcon = ({ icon, ...rest }: { icon: string }) => {
   const [svg, setSvg] = useState<TSvg>()

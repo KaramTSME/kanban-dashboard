@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { CollapsibleList, CollapsibleListProvider } from "./ui/collapsible-list"
@@ -6,6 +6,10 @@ import { SvgIcon } from "./ui/svg-icon"
 import { Button } from "./ui/button"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
 import { Input } from "./ui/input"
+import { FormControlContext, FromControl } from "./ui/form-control"
+import { Name } from "@/core/defs/name"
+import type { TFormControlContext } from "./ui/meta/form-control-context"
+import type { IName } from "@/core/interfaces/i-name"
 
 const AddNewButton = ({
   disabled,
@@ -35,14 +39,23 @@ const AddNewButton = ({
 }
 
 const InputForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
+  const { instance, isDirty, setInstance } = useContext(FormControlContext) as TFormControlContext<IName>
   return (
-    <div className="ml-3 mb-3">
-      <Input className="mb-2" label="Dashboard name" placeholder="Enter dashboard name" size={SizeEnum.xs} required />
+    <div className="ml-3 mb-2">
+      <Input
+        className="mb-2"
+        label="Dashboard name"
+        placeholder="Enter dashboard name"
+        size={SizeEnum.xs}
+        required
+        value={instance.name}
+        update={(v) => setInstance({ ...instance, name: v as string })}
+      />
       <div className="flex justify-end gap-2">
         <Button background={BackgroundEnum.secondary} size={SizeEnum.xs} onClick={toggleNewBoardForm}>
           Cancel
         </Button>
-        <Button background={BackgroundEnum.primary} size={SizeEnum.xs}>
+        <Button background={BackgroundEnum.primary} size={SizeEnum.xs} disabled={!isDirty}>
           Create
         </Button>
       </div>
@@ -84,7 +97,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             { title: "Dashboard 1", url: "#" },
             { title: "Dashboard 2", url: "#" },
           ]}
-          customListItem={newBoardFormVisible && <InputForm toggleNewBoardForm={toggleNewBoardForm} />}
+          customListItem={
+            newBoardFormVisible && (
+              <FromControl<IName> instance={Name} defaultFormValue={{ name: "Default Value" }}>
+                <InputForm toggleNewBoardForm={toggleNewBoardForm} />
+              </FromControl>
+            )
+          }
         >
           <AddNewButton disabled={newBoardFormVisible} toggleNewBoardForm={toggleNewBoardForm} />
         </CollapsibleList>
