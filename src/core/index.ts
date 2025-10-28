@@ -27,14 +27,25 @@ export function isArr(value: any): boolean {
   return Array.isArray(value)
 }
 
-export function isEqual(a: any, b: any): boolean {
-  if (!isObj(a) || !isObj(b)) return a === b
+export function isDate(obj: any): boolean {
+  return obj instanceof Date
+}
 
-  if (isArr(a) && isArr(b)) {
-    if ((a as any[]).length != (b as any[]).length) return false
-    return (a as any[]).every((v, i) => isEqual(v, (b as any[])[i]))
-  }
+export function areDatesEqual(a?: Date, b?: Date): boolean {
+  if (!a || !b || !isDate(a) || !isDate(b)) return false
+  a.setMilliseconds(0)
+  b.setMilliseconds(0)
+  return a.toDateString() == b.toDateString() && a.getTime() == b.getTime()
+}
 
+export function areArraysEqual(a?: any[], b?: any[]): boolean {
+  if (!a || !b || !isArr(a) || !isArr(b)) return false
+  if ((a as any[]).length != (b as any[]).length) return false
+  return (a as any[]).every((v, i) => isEqual(v, (b as any[])[i]))
+}
+
+export function areObjectsEqual(a?: TMap<any>, b?: TMap<any>): boolean {
+  if (!a || !b || !isObj(a) || !isObj(b)) return false
   const AObjectEntries = Object.entries(a)
   const BObjectEntries = Object.entries(b)
   if (AObjectEntries.length != BObjectEntries.length) return false
@@ -42,4 +53,11 @@ export function isEqual(a: any, b: any): boolean {
     if (k != BObjectEntries[i][0]) return false
     return isEqual(v, (b as TMap<any>)[k])
   })
+}
+
+export function isEqual(a: any, b: any): boolean {
+  if (!isObj(a) || !isObj(b)) return a === b
+  if (isDate(a) && isDate(b)) return areDatesEqual(a, b)
+  if (isArr(a) && isArr(b)) return areArraysEqual(a, b)
+  return areObjectsEqual(a, b)
 }
