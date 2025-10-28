@@ -3,8 +3,12 @@
   align-items: center;
   justify-content: center;
   border-radius: calc(var(--radius) - 4px);
-  padding: calc(var(--spacing));
+  padding: calc(var(--spacing) + 0.05rem);
   cursor: pointer;
+
+  &.btn-icon {
+    padding: calc(var(--spacing));
+  }
 
   &.btn-primary {
     background-color: var(--primary);

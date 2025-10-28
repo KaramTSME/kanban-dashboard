@@ -27,21 +27,13 @@ const CollapsibleList = ({ title, items = [], children, customListItem }: TColla
     toggle()
   }
 
-  // Children.map(children, (child) => (isValidElement(child) ? cloneElement(child, { onClick: () => toggle }) : child))
-
   return (
     <>
       <a href="#" className="collapsible" {...{ open: !isCollapsed }}>
         <h6 className="collapsible-title">{title}</h6>
         <div>
           {children}
-          <Button
-            background={BackgroundEnum.muted}
-            size={SizeEnum.lg}
-            transparent
-            {...{ "list-action": "toggle" }}
-            onClick={toggleCollapse}
-          >
+          <Button background={BackgroundEnum.muted} size={SizeEnum.lg} list-action="toggle" transparent icon onClick={toggleCollapse}>
             <SvgIcon icon="chevron" />
           </Button>
         </div>

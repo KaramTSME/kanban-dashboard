@@ -6,6 +6,7 @@ type TButton = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   background?: TOptional<BackgroundEnum>
   transparent?: TOptional<boolean>
   disabled?: TOptional<boolean>
+  icon?: TOptional<boolean>
 }
 
 export type { TButton }

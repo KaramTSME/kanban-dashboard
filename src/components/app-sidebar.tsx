@@ -25,6 +25,7 @@ const AddNewButton = ({
       disabled={disabled}
       size={SizeEnum.lg}
       transparent
+      icon
       {...{ "aria-label": "Create" }}
       onClick={onAdd}
     >
