@@ -1,3 +1,4 @@
+import { ats } from "@/core"
 import { Button } from "./button"
 import { SvgIcon } from "./svg-icon"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
@@ -18,7 +19,14 @@ const CollapsibleListProvider = ({ ...props }) => {
   return <CollapsibleListContext.Provider value={context} {...props} />
 }
 
-const CollapsibleList = ({ title, items = [], children, customListItem }: TCollapsibleListProps) => {
+const CollapsibleList = ({
+  title,
+  items = [],
+  children,
+  customListItem,
+  collapseHeadClass = "",
+  collapseListClass = "",
+}: TCollapsibleListProps) => {
   const { isCollapsed, toggle } = useContext(CollapsibleListContext) as TCollapsibleListContext
 
   const toggleCollapse = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,7 +37,7 @@ const CollapsibleList = ({ title, items = [], children, customListItem }: TColla
 
   return (
     <>
-      <a href="#" className="collapsible" {...{ open: !isCollapsed }}>
+      <a href="#" className={ats(["collapsible", collapseHeadClass])} {...{ open: !isCollapsed }}>
         <h6 className="collapsible-title">{title}</h6>
         <div>
           {children}
@@ -39,7 +47,7 @@ const CollapsibleList = ({ title, items = [], children, customListItem }: TColla
         </div>
       </a>
       {!isCollapsed && (
-        <ul className="collapse-list">
+        <ul className={ats(["collapse-list", collapseListClass])}>
           {customListItem}
           {items.map((item, index) => {
             return (

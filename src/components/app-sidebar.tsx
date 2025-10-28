@@ -38,10 +38,10 @@ const AddNewButton = ({
   )
 }
 
-const InputForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
+const NewDashboardForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
   const { instance, isDirty, setInstance } = useContext(FormControlContext) as TFormControlContext<IName>
   return (
-    <div className="ml-3 mb-2">
+    <div className="ml-3 my-2">
       <Input
         className="mb-2"
         label="Dashboard name"
@@ -97,10 +97,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             { title: "Dashboard 1", url: "#" },
             { title: "Dashboard 2", url: "#" },
           ]}
+          collapseListClass="mr-2"
           customListItem={
             newBoardFormVisible && (
               <FromControl<IName> instance={Name} defaultFormValue={{ name: "Default Value" }}>
-                <InputForm toggleNewBoardForm={toggleNewBoardForm} />
+                <NewDashboardForm toggleNewBoardForm={toggleNewBoardForm} />
               </FromControl>
             )
           }
