@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Command } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
-import { CollapsibleList, CollapsibleListProvider } from "./ui/collapsible-list"
+import { CollapsibleList, CollapsibleListContext, CollapsibleListProvider } from "./ui/collapsible-list"
 import { SvgIcon } from "./ui/svg-icon"
 import { Button } from "./ui/button"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
@@ -10,6 +10,7 @@ import { FormControlContext, FromControl } from "./ui/form-control"
 import { Name } from "@/core/defs/name"
 import type { TFormControlContext } from "./ui/meta/form-control-context"
 import type { IName } from "@/core/interfaces/i-name"
+import type { TCollapsibleListContext } from "./ui/meta/collapsible-list-context"
 
 const AddNewButton = ({
   disabled,
@@ -18,7 +19,10 @@ const AddNewButton = ({
   disabled: boolean
   toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>, c: boolean) => void
 }) => {
+  const { isCollapsed, toggle } = useContext(CollapsibleListContext) as TCollapsibleListContext
+
   const onAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isCollapsed) toggle(false)
     toggleNewBoardForm(e, true)
   }
 
