@@ -6,7 +6,7 @@ import type { TFormControlContext } from "./meta/form-control-context"
 
 const FormControlContext = createContext<TNullable<TFormControlContext>>(null)
 
-function FromControl<T>({ instance: inst, defaultFormValue = {}, ...props }: TFormControlProps<T>) {
+function FormControl<T>({ instance: inst, defaultFormValue = {}, ...props }: TFormControlProps<T>) {
   const [instance, setInstance] = useState<T>(new inst({ ...defaultFormValue }))
   const [originalValue] = useState({ ...instance })
 
@@ -21,4 +21,4 @@ function FromControl<T>({ instance: inst, defaultFormValue = {}, ...props }: TFo
   return <FormControlContext.Provider value={context} {...props} />
 }
 
-export { FromControl, FormControlContext }
+export { FormControl, FormControlContext }

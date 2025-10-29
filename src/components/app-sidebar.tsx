@@ -6,7 +6,7 @@ import { SvgIcon } from "./ui/svg-icon"
 import { Button } from "./ui/button"
 import { BackgroundEnum, SizeEnum } from "@/core/enums/global"
 import { Input } from "./ui/input"
-import { FormControlContext, FromControl } from "./ui/form-control"
+import { FormControlContext, FormControl } from "./ui/form-control"
 import { Name } from "@/core/defs/name"
 import type { TFormControlContext } from "./ui/meta/form-control-context"
 import type { IName } from "@/core/interfaces/i-name"
@@ -104,9 +104,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           collapseListClass="mr-2"
           customListItem={
             newBoardFormVisible && (
-              <FromControl<IName> instance={Name} defaultFormValue={{ name: "Default Value" }}>
+              <FormControl<IName> instance={Name} defaultFormValue={{ name: "Default Value" }}>
                 <NewDashboardForm toggleNewBoardForm={toggleNewBoardForm} />
-              </FromControl>
+              </FormControl>
             )
           }
         >
