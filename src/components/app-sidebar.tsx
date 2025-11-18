@@ -43,7 +43,7 @@ const AddNewButton = ({
 }
 
 const NewDashboardForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
-  const { instance, isDirty, setInstance } = useContext(FormControlContext) as TFormControlContext<IName>
+  const { instance: dashboard, isDirty, update } = useContext(FormControlContext) as TFormControlContext<IName>
   return (
     <div className="ml-3 my-2">
       <Input
@@ -52,8 +52,8 @@ const NewDashboardForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: Reac
         placeholder="Enter dashboard name"
         size={SizeEnum.xs}
         required
-        value={instance.name}
-        update={(v) => setInstance({ ...instance, name: v as string })}
+        value={dashboard.name}
+        update={(v) => update("name", v as string)}
       />
       <div className="flex justify-end gap-2">
         <Button background={BackgroundEnum.secondary} size={SizeEnum.xs} onClick={toggleNewBoardForm}>
