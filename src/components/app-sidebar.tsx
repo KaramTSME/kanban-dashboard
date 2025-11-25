@@ -42,28 +42,58 @@ const AddNewButton = ({
   )
 }
 
-const NewDashboardForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
-  const { instance: dashboard, isDirty, update } = useContext(FormControlContext) as TFormControlContext<IName>
+const NewDashboardFormElements = () => {
+  const { instance: dashboard, update } = useContext(FormControlContext) as TFormControlContext<IName>
+
   return (
-    <div className="ml-3 my-2">
-      <Input
-        className="mb-2"
-        label="Dashboard name"
-        placeholder="Enter dashboard name"
-        size={SizeEnum.xs}
-        required
-        value={dashboard.name}
-        update={(v) => update("name", v as string)}
-      />
-      <div className="flex justify-end gap-2">
-        <Button background={BackgroundEnum.secondary} size={SizeEnum.xs} onClick={toggleNewBoardForm}>
-          Cancel
-        </Button>
-        <Button background={BackgroundEnum.primary} size={SizeEnum.xs} disabled={!isDirty}>
-          Create
-        </Button>
-      </div>
+    <Input
+      className="mb-2"
+      label="Dashboard name"
+      placeholder="Enter dashboard name"
+      size={SizeEnum.xs}
+      required
+      value={dashboard.name}
+      update={(v) => update("name", v as string)}
+    />
+  )
+}
+
+const NewDashboardFormActions = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
+  const { isDirty, isDisabled, submit } = useContext(FormControlContext) as TFormControlContext<IName>
+
+  return (
+    <div className="flex justify-end gap-2">
+      <Button background={BackgroundEnum.secondary} size={SizeEnum.xs} disabled={isDisabled} onClick={toggleNewBoardForm}>
+        Cancel
+      </Button>
+      <Button background={BackgroundEnum.primary} size={SizeEnum.xs} disabled={!isDirty || isDisabled} onClick={submit}>
+        Create
+      </Button>
     </div>
+  )
+}
+
+const NewDashboardForm = ({ toggleNewBoardForm }: { toggleNewBoardForm: (e: React.MouseEvent<HTMLButtonElement>) => void }) => {
+  const submit = (instance: IName) =>
+    new Promise<void>(async (r, x) => {
+      try {
+        console.log(instance)
+        setTimeout(r, 3000)
+      } catch (error) {
+        x(error)
+      }
+    })
+
+  return (
+    <FormControl<IName>
+      instance={Name}
+      defaultFormValue={{ name: "Default Value" }}
+      actionsSlot={<NewDashboardFormActions toggleNewBoardForm={toggleNewBoardForm} />}
+      className="ml-3"
+      submit={submit}
+    >
+      <NewDashboardFormElements />
+    </FormControl>
   )
 }
 
@@ -102,13 +132,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             { title: "Dashboard 2", url: "#" },
           ]}
           collapseListClass="mr-2"
-          customListItem={
-            newBoardFormVisible && (
-              <FormControl<IName> instance={Name} defaultFormValue={{ name: "Default Value" }}>
-                <NewDashboardForm toggleNewBoardForm={toggleNewBoardForm} />
-              </FormControl>
-            )
-          }
+          customListItem={newBoardFormVisible && NewDashboardForm({ toggleNewBoardForm })}
         >
           <AddNewButton disabled={newBoardFormVisible} toggleNewBoardForm={toggleNewBoardForm} />
         </CollapsibleList>

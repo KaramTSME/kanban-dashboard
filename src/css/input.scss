@@ -15,4 +15,9 @@ input {
     color: var(--gray);
     opacity: 0.85;
   }
+
+  &[disabled],
+  fieldset[disabled] & {
+    opacity: 0.7;
+  }
 }

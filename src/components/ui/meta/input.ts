@@ -6,6 +6,7 @@ type TInput = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
   label?: string
   noLabel?: boolean
   placeholder?: string
+  disabled?: boolean
   size?: SizeEnum
 }
 

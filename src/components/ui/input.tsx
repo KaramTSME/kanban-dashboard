@@ -2,7 +2,7 @@ import { ats } from "@/core"
 import { SizeEnum } from "@/core/enums/global"
 import type { TInput } from "./meta/input"
 
-const Input = ({ update, value, type = "text", label, noLabel, placeholder, id, size = SizeEnum.md, ...props }: TInput) => {
+const Input = ({ update, value, type = "text", label, noLabel, placeholder, id, disabled, size = SizeEnum.md, ...props }: TInput) => {
   const className = ats([size, `${props.className ? `${props.className}` : ""}`])
 
   return (
@@ -17,7 +17,14 @@ const Input = ({ update, value, type = "text", label, noLabel, placeholder, id, 
           )}
         </label>
       )}
-      <input value={value} type={type} placeholder={placeholder} id={id} onInput={(e: any) => update?.(e.target.value)} />
+      <input
+        value={value}
+        type={type}
+        placeholder={placeholder}
+        id={id}
+        disabled={disabled}
+        onInput={(e: any) => update?.(e.target.value)}
+      />
     </div>
   )
 }
